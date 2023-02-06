@@ -14,11 +14,11 @@ use function PHPUnit\Framework\assertInstanceOf;
 use function PHPUnit\Framework\assertTrue;
 
 /**
+ * @covers \Jascha030\DI\Builder\Builder
  * @covers \Jascha030\DI\CompositeContainer
  * @covers \Jascha030\DI\Config\ContainerConfig
- * @covers \Jascha030\DI\Builder\Builder
- * @covers \Jascha030\DI\Exception\ContainerLookupException
  * @covers \Jascha030\DI\Exception\ContainerEntryNotFoundException
+ * @covers \Jascha030\DI\Exception\ContainerLookupException
  *
  * @internal
  */
@@ -27,9 +27,7 @@ final class CompositeContainerTest extends TestCase
     use TestServiceProviderTrait;
 
     /**
-     * @return void
-     *
-     * @throws ReflectionException|ContainerExceptionInterface|NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface|NotFoundExceptionInterface|ReflectionException
      */
     public function testGet(): void
     {
@@ -49,7 +47,7 @@ final class CompositeContainerTest extends TestCase
      */
     public function testConstruct(): void
     {
-        assertInstanceOf(ContainerInterface::class,$this->getContainer());
+        assertInstanceOf(ContainerInterface::class, $this->getContainer());
     }
 
     /**
@@ -58,6 +56,7 @@ final class CompositeContainerTest extends TestCase
     private function getContainer(): ContainerInterface
     {
         $containers = [$this->getBuilder()($this->getContainerConfig())];
-        return  new CompositeContainer($containers);
+
+        return new CompositeContainer($containers);
     }
 }

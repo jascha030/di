@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace Jascha030\DI\Builder;
 
-use DI\ContainerBuilder;
-use Generator;
 use InvalidArgumentException;
 use Jascha030\DI\BuilderInterface;
 use Jascha030\DI\ContainerConfigInterface;
-use Jascha030\DI\ServiceProvider\ServiceProviderInterface;
 use Jascha030\DI\TestServiceProviderTrait;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -19,6 +16,8 @@ use function PHPUnit\Framework\assertInstanceOf;
 /**
  * @covers \Jascha030\DI\Builder\Builder
  * @covers \Jascha030\DI\Config\ContainerConfig
+ *
+ * @internal
  */
 final class BuilderTest extends TestCase
 {
@@ -34,6 +33,7 @@ final class BuilderTest extends TestCase
 
     /**
      * @depends testConstruct
+     *
      * @throws ReflectionException
      */
     public function testInvoke(): void

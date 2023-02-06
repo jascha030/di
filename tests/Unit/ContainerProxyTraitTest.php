@@ -14,13 +14,14 @@ use function PHPUnit\Framework\assertInstanceOf;
 use function PHPUnit\Framework\assertTrue;
 
 /**
- * @covers \Jascha030\DI\ContainerProxyTrait
  * @covers \Jascha030\DI\Builder\Builder
  * @covers \Jascha030\DI\Config\ContainerConfig
+ * @covers \Jascha030\DI\ContainerProxyTrait
+ *
+ * @internal
  */
 class ContainerProxyTraitTest extends TestCase
 {
-
     use TestServiceProviderTrait;
 
     /**
@@ -48,11 +49,12 @@ class ContainerProxyTraitTest extends TestCase
      */
     private function mock()
     {
-        return new class($this->getBuilder()($this->getContainerConfig())) {
+        return new class ($this->getBuilder()($this->getContainerConfig())) {
             use ContainerProxyTrait;
 
             public function __construct(private readonly ContainerInterface $container)
-            {}
+            {
+            }
 
             private function getInnerContainer(): ContainerInterface
             {

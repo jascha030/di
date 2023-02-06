@@ -13,8 +13,6 @@ trait ContainerProxyTrait
     /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
-     *
-     * @return mixed
      */
     public function get(string $id): mixed
     {

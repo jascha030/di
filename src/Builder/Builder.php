@@ -13,16 +13,11 @@ use Jascha030\DI\BuilderInterface;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionFunction;
-use function class_implements;
-use function is_subclass_of;
 use function reset;
 use function sprintf;
 
 class Builder implements BuilderInterface
 {
-    /**
-     * @var Closure
-     */
     private Closure $factory;
 
     /**
@@ -62,7 +57,7 @@ class Builder implements BuilderInterface
 
         if (
             ! $type->isSubclassOf(ContainerConfigInterface::class)
-            && $type->getName() !== ContainerConfigInterface::class
+            && ContainerConfigInterface::class !== $type->getName()
         ) {
             throw self::invalidArgumentException();
         }

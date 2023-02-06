@@ -10,7 +10,8 @@ namespace Jascha030\DI\Fixtures;
 final class Service
 {
     public function __construct(private readonly DependencyInterface $dependency)
-    {}
+    {
+    }
 
     public function getDependency(): DependencyInterface
     {

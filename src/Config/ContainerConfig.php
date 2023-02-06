@@ -25,6 +25,7 @@ class ContainerConfig implements ContainerConfigInterface
     {
         $new              = clone $this;
         $new->definitions = $definitions;
+
         return $new;
     }
 
@@ -34,12 +35,13 @@ class ContainerConfig implements ContainerConfigInterface
     }
 
     /**
-     * @param array $providers Service providers to get definitions from.
+     * @param array $providers service providers to get definitions from
      */
     public function withProviders(array $providers): self
     {
         $new            = clone $this;
         $new->providers = $providers;
+
         return $new;
     }
 

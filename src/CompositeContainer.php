@@ -25,7 +25,7 @@ class CompositeContainer implements ContainerInterface
     /**
      * {@inheritDoc}
      *
-     * @throws ContainerLookupException|ContainerEntryNotFoundException
+     * @throws ContainerEntryNotFoundException|ContainerLookupException
      */
     public function get(string $id)
     {

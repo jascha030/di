@@ -12,6 +12,8 @@ use function PHPUnit\Framework\assertInstanceOf;
 
 /**
  * @covers \Jascha030\DI\Config\ContainerConfig
+ *
+ * @internal
  */
 class ContainerConfigTest extends TestCase
 {
