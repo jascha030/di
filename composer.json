@@ -1,0 +1,63 @@
+{
+    "name": "socialbrothers/di",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jascha030",
+            "email": "contact@jaschavanaalst.nl",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://composer.sbdev.nl/"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Jascha030\\DI\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jascha030\\DI\\": "tests/Unit/"
+        }
+    },
+    "require": {
+        "php": "~8.1||~8.2",
+        "jascha030/service-provider": "^1.0",
+        "psr/container": "^1||^2.0"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8",
+        "php-di/php-di": "^7.0",
+        "roave/security-advisories": "dev-latest",
+        "symfony/var-dumper": "^6.2"
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": false,
+            "forward-command": true
+        }
+    },
+    "config": {
+        "platform-check": false,
+        "platform": {
+            "php": "8.1"
+        },
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "php-cs-fixer": "tools/php-cs-fixer",
+        "phpunit": "tools/phpunit.phar",
+        "phpstan": "vendor-bin/phpstan/vendor/bin/phpstan",
+        "format": "@php-cs-fixer fix --config=.php-cs-fixer.dist.php",
+        "test": "@phpunit -c phpunit.xml.dist",
+        "analyze": "@phpstan analyze -c phpstan.neon"
+    }
+}
