@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Jascha030\DI;
 
+use Jascha030\DI\Exception\ContainerEntryNotFoundException;
+use Jascha030\DI\Exception\ContainerLookupException;
 use Psr\Container\ContainerInterface;
 
 class CompositeContainer implements ContainerInterface
@@ -17,27 +19,31 @@ class CompositeContainer implements ContainerInterface
      */
     public function __construct(iterable $containers)
     {
-        $this->containers = $containers;
-
-        $this->containers = array_filter(
-            $this->containers,
-            static fn ($item): bool => is_subclass_of(ContainerInterface::class, $item)
-        );
+        $this->containers = array_filter($containers, [$this, 'validateContainer']);
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @throws ContainerLookupException|ContainerEntryNotFoundException
      */
     public function get(string $id)
     {
-        if (isset($this->lookupTable[$id])) {
+        if ($this->has($id)) {
+            if (! isset($this->containers[$this->lookupTable[$id]])) {
+                throw new ContainerLookupException($id);
+            }
+
             return $this->containers[$this->lookupTable[$id]]->get($id);
         }
-        // TODO: Throw exception.
+
+        throw new ContainerEntryNotFoundException($id);
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @noinspection MultipleReturnStatementsInspection
      */
     public function has(string $id): bool
     {
@@ -56,5 +62,10 @@ class CompositeContainer implements ContainerInterface
         }
 
         return false;
+    }
+
+    private function validateContainer(ContainerInterface $item): ContainerInterface
+    {
+        return $item;
     }
 }
