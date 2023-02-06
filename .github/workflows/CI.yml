@@ -24,7 +24,7 @@ jobs:
           coverage: none
           tools: none
       - name: Run PHP-CS-Fixer
-        run: ./tools/php-cs-fixer fix --dry-run --show-progress=dots --using-cache=no --verbose
+        run: ./tools/php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --show-progress=dots --using-cache=no --verbose
 
   validate:
       name: Validate
